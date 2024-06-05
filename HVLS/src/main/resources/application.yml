@@ -1,0 +1,23 @@
+
+spring:
+  sql:
+    init:
+      mode: always
+  application:
+    name: HLVS
+  mustache:
+    suffix: .html
+  datasource:
+    url: jdbc:postgresql://localhost:5432/docker-HSLV
+    username: FerSand
+    password: hyfUI78Njh
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        globally_quoted_identifiers: true
+    show-sql: true
+
+jwt:
+  secret: uhiuyi8213dgba2li3hjrb982y43
