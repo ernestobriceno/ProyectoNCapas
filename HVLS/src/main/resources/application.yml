@@ -21,3 +21,7 @@ spring:
 
 jwt:
   secret: uhiuyi8213dgba2li3hjrb982y43
+
+hibernate:
+  hbm2ddl:
+    auto=update: true
