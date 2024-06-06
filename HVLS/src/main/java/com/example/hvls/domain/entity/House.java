@@ -12,6 +12,8 @@ public class House {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String name;
+
     @Column(nullable = false)
     private int maxDePersonas;
 
@@ -26,6 +28,14 @@ public class House {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getMaxDePersonas() {

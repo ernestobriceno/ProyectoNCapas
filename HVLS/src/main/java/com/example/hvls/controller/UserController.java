@@ -10,7 +10,7 @@ import java.util.List;
 
 // Simplifying the UserController to focus on user management
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api/users")
 public class UserController {
 
     private final UserService userService;
@@ -26,13 +26,13 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<List<User>> getAllUsers() {
         List<User> users = userService.findAllUsers();
         return ResponseEntity.ok(users);
     }
 
-    @PostMapping
+    @PostMapping("/register")
     public ResponseEntity<User> saveUser(@RequestBody User user) {
         User savedUser = userService.saveUser(user);
         return ResponseEntity.ok(savedUser);

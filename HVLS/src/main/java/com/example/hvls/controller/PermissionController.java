@@ -15,13 +15,13 @@ public class PermissionController {
     @Autowired
     private PermissionService permissionService;
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<Permission> createPermission(@RequestBody Permission permission) {
         Permission savedPermission = permissionService.savePermission(permission);
         return ResponseEntity.ok(savedPermission);
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public List<Permission> getAllPermissions() {
         return permissionService.getAllPermissions();
     }
