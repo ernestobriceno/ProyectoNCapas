@@ -13,12 +13,16 @@ import Solicutdes from './Home/solicitudes';
 import Ingresos from './Home/ingresos';
 import Vigilante from './Home/vigilante';
 import Scanner from './Home/scanner';
+import Logmanual from './Home/logmanual';
+import Qrgenerator from './Home/qrgenerator';
+import Stats from './Home/stats';
+import Permiaut from './Home/permiaut';
 
 
 function App() {
   return (
     <Routes>
-      <Route path="" element={<Login />} />
+      <Route path="/" element={<Login />} />
       <Route path="/home" element={<Home />} />
       <Route path = "/visitax" element={<Visitax/>} />
       <Route path = "/authvistas" element={<Authvistas/>} />
@@ -29,6 +33,10 @@ function App() {
       <Route path = "/ingresos" element={<Ingresos/>} />
       <Route path = "/vigilante" element={<Vigilante/>} />
       <Route path = "/scanner" element={<Scanner/>} />
+      <Route path = "/logmanual" element={<Logmanual/>} />
+      <Route path = "/qrgenerator" element={<Qrgenerator/>} />
+      <Route path = "/stats" element={<Stats/>} />
+      <Route path = "/permiaut" element={<Permiaut/>} />
 
       
 

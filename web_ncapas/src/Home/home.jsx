@@ -42,7 +42,12 @@ const Home = () => {
               <Card
                 title="Generar QR"
                 imageUrl={qr}
-                linkTo="/generarqr"
+                linkTo="/qrgenerator"
+              />
+               <Card
+                title="Visitas Autorizadas"
+                imageUrl={qr}
+                linkTo="/permiaut"
               />
             </>
           )}
@@ -54,14 +59,14 @@ const Home = () => {
                 linkTo="/visitax"
               />
               <Card
-                title="Autorizar Visitas"
+                title="Solicitudes de  Visitas"
                 imageUrl={visitas}
                 linkTo="/solicitudes"
               />
               <Card
                 title="Generar QR"
                 imageUrl={qr}
-                linkTo="/generarqr"
+                linkTo="/qrgenerator"
               />
             </>
           )}
@@ -71,6 +76,12 @@ const Home = () => {
                 imageUrl={accesos}
                 title="Mis accesos"
                 linkTo="/solicitudes"
+              />
+
+              <Card
+                title="Generar QR"
+                imageUrl={qr}
+                linkTo="/qrgenerator"
               />
             </>
           )}
@@ -96,16 +107,27 @@ const Home = () => {
                 imageUrl={qr}
                 linkTo="/scanner"
               />
+              <Card
+                title="Grafica"
+                imageUrl={qr}
+                linkTo="/stats"
+              />
+         
             </>
           )}
            {userType === 'vigilante' && (
             <>
               <Card
                 imageUrl={qr}
-                title="Agregar Usuario "
-                linkTo="/visitax"
+                title="Registrar Visita "
+                linkTo="/logmanual"
               />
-             
+              <Card
+                title="Escanear QR"
+                imageUrl={qr}
+                linkTo="/generarqr"
+              />
+            
             </>
           )}
         </div>

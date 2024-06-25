@@ -29,7 +29,7 @@ const TablePage = () => {
     <div className="min-h-screen bg-blue-200 flex items-center justify-center p-4">
       <div className="bg-white p-8 md:p-16 rounded-lg shadow-md w-full max-w-5xl relative">
         <img src="/logo.png" alt="Logo" className="absolute top-4 right-4 w-12 md:w-16" />
-        <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center md:text-left">Solicitudes de Visitas</h2>
+        <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center md:text-left">Visitas Autorizadas</h2>
         <div className="overflow-x-auto">
           <table className="min-w-full bg-white border border-gray-300">
             <thead>
@@ -49,12 +49,7 @@ const TablePage = () => {
                   <td className="px-4 py-2 border-b">{row.visitor}</td>
                   <td className="px-4 py-2 border-b">{row.house}</td>
                   <td className="px-4 py-2 border-b flex flex-col md:flex-row">
-                    <button
-                      className="bg-green-500 text-white px-2 py-1 mb-2 md:mb-0 md:mr-2 rounded hover:bg-green-600"
-                      onClick={() => handleAccept(row.id)}
-                    >
-                      Aceptar
-                    </button>
+                   
                     <button
                       className="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600"
                       onClick={() => handleDeny(row.id)}

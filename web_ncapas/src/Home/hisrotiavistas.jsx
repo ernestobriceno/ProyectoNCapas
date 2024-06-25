@@ -90,7 +90,7 @@ const TablePage = () => {
         </div>
 
         <div className="mt-4 flex justify-end">
-          <a href="/home" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+          <a href="/home" className="bg-gray-500 text-white px-4 py-2 rounded">
             Regresar
           </a>
         </div>

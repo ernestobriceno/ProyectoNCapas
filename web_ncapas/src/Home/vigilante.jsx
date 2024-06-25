@@ -8,6 +8,12 @@ const DualFormPage = () => {
     lastName: ''
   });
 
+  const [vigilantes, setVigilantes] = useState([
+    { id: 1, fullName: 'Juan Pérez' },
+    { id: 2, fullName: 'María López' }
+   
+  ]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -18,23 +24,23 @@ const DualFormPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form Data:', formData);
-    // Aquí puedes manejar el envío del formulario
+    const newVigilante = {
+      id: vigilantes.length + 1,
+      fullName: `${formData.firstName} ${formData.middleName} ${formData.lastName}`
+    };
+    setVigilantes([...vigilantes, newVigilante]);
+    setFormData({ firstName: '', middleName: '', lastName: '' });
   };
 
-  const staticData = [
-    { fullName: 'Juan Pérez' },
-    { fullName: 'María López' },
-    { fullName: 'Carlos Sánchez' },
-    { fullName: 'Ana Torres' },
-    { fullName: 'Luis Ramírez' }
-  ];
+  const eliminarVigilante = (id) => {
+    setVigilantes(vigilantes.filter(vigilante => vigilante.id !== id));
+  };
 
   return (
     <div className="min-h-screen bg-blue-200 flex items-center justify-center p-4">
-      <div className="bg-white p-8 md:p-16 rounded-lg shadow-md w-auto relative flex flex-col md:flex-row">
+      <div className="bg-white p-8 md:p-16 rounded-lg shadow-md w-full max-w-4xl relative flex flex-col md:flex-row">
         <img src="/logo.png" alt="Logo" className="absolute top-4 left-4 w-12 md:w-16" />
-        <div className="w-full  md:w-1/2 mb-8 md:mb-0 md:mr-4 flex flex-col justify-between">
+        <div className="w-full md:w-1/2 mb-8 md:mb-0 md:mr-4 flex flex-col justify-between">
           <div>
             <div className="text-center">
               <img src={carnet} alt="Left Section" className="w-24 mx-auto mb-4" />
@@ -90,30 +96,28 @@ const DualFormPage = () => {
             <div className="text-center">
               <h2 className="text-2xl m-20 md:text-3xl font-bold mb-4">Lista de Vigilantes</h2>
             </div>
-            <div className="border p-4 rounded bg-gray-100">
-              {staticData.map((resident, index) => (
-                <div key={index} className="py-2 px-4 border-b last:border-b-0">
-                  {resident.fullName}
+            <div className="border p-4 rounded bg-gray-100 w-full">
+              {vigilantes.map((vigilante) => (
+                <div key={vigilante.id} className="flex justify-between items-center py-2 px-4 border-b last:border-b-0">
+                  {vigilante.fullName}
+                  <button
+                    onClick={() => eliminarVigilante(vigilante.id)}
+                    className="bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600"
+                  >
+                    Eliminar
+                  </button>
                 </div>
               ))}
             </div>
           </div>
-          <button
-            type="button"
-            className="w-60 mt-4 bg-blue-500 text-white py-2 rounded hover:bg-blue-600"
-          >
-            Ver Vigilante
-          </button>
-          <div className="mt-4 flex justify-end">
-        
-        <a href="/home" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-          Regresar
-        </a>
-      </div>
+         
+          <div className="mt-4 flex justify-end w-full">
+            <a href="/home" className="bg-gray-500 text-white px-4 py-2 rounded">
+              Regresar
+            </a>
+          </div>
         </div>
-        
       </div>
-      
     </div>
   );
 };

@@ -2,24 +2,41 @@ import React, { useState } from 'react';
 
 const FormPage = () => {
   const [formData, setFormData] = useState({
-    field1: '',
+    field1: '4',  // Valor quemado para "Casa"
     field2: '',
     field3: '',
-    field4: ''
+    field4: '',
+    field5: '',
+    startDateTime: '',  // Campo vacío para que el usuario ingrese la fecha y hora de inicio
+    endDateTime: '', 
+    startTime: '', // Campo vacío para que el usuario ingrese la hora de inicio
+    endTime: '',   // Campo vacío para que el usuario ingrese la fecha y hora de finalización
+    daysOfWeek: {
+      monday: false,
+      tuesday: false,
+      wednesday: false,
+      thursday: false,
+      friday: false,
+      saturday: false,
+      sunday: false
+    }
   });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, checked } = e.target;
     setFormData({
       ...formData,
-      [name]: value
+      daysOfWeek: {
+        ...formData.daysOfWeek,
+        [name]: checked
+      }
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Form Data:', formData);
-    // Aquí puedes manejar el envío del formulario
+    // Aquí puedes manejar el envío del formulario, incluyendo la lógica para la fecha de finalización
   };
 
   return (
@@ -34,8 +51,8 @@ const FormPage = () => {
               id="field1"
               name="field1"
               className="w-full md:w-80 px-4 py-3 border rounded"
-              value={formData.field1}
-              onChange={handleChange}
+              value="4"
+              readOnly
               required
             />
           </div>
@@ -47,7 +64,7 @@ const FormPage = () => {
               name="field2"
               className="w-full md:w-80 px-4 py-3 border rounded"
               value={formData.field2}
-              onChange={handleChange}
+              onChange={(e) => setFormData({ ...formData, field2: e.target.value })}
               required
             />
           </div>
@@ -59,7 +76,7 @@ const FormPage = () => {
               name="field3"
               className="w-full md:w-80 px-4 py-3 border rounded"
               value={formData.field3}
-              onChange={handleChange}
+              onChange={(e) => setFormData({ ...formData, field3: e.target.value })}
               required
             />
           </div>
@@ -71,10 +88,99 @@ const FormPage = () => {
               name="field4"
               className="w-full md:w-80 px-4 py-3 border rounded"
               value={formData.field4}
-              onChange={handleChange}
+              onChange={(e) => setFormData({ ...formData, field4: e.target.value })}
               required
             />
           </div>
+          <div className="mb-8">
+            <label htmlFor="field5" className="block text-gray-700">Correo</label>
+            <input
+              type="email"
+              id="field5"
+              name="field5"
+              className="w-full md:w-80 px-4 py-3 border rounded"
+              value={formData.field5}
+              onChange={(e) => setFormData({ ...formData, field5: e.target.value })}
+              required
+            />
+          </div>
+          <div className="mb-8">
+            <label htmlFor="startDateTime" className="block text-gray-700">Fecha de Inicio</label>
+            <input
+              type="date"
+              id="startDate"
+              name="startDate"
+              className="w-full md:w-80 px-4 py-3 border rounded"
+              value={formData.startDateTime}
+              onChange={(e) => setFormData({ ...formData, startDateTime: e.target.value })}
+              required
+            />
+          </div>
+          <div className="mb-8">
+  <label htmlFor="endDate" className="block text-gray-700">Fecha de Finalización</label>
+  <input
+    type="date"
+    id="endDate"
+    name="endDate"
+    className="w-full md:w-80 px-4 py-3 border rounded"
+    value={formData.endDateTime}
+    onChange={(e) => setFormData({ ...formData, endDateTime: e.target.value })}
+    required
+  />
+</div>
+
+          <div className="mb-8">
+            <label htmlFor="endDate" className="block text-gray-700">Hora de Entrada</label>
+            <input
+              type="time"
+              id="endTime"
+              name="endTime"
+              className="w-full md:w-80 px-4 py-3 border rounded"
+              value={formData.startTime}
+              onChange={(e) => setFormData({ ...formData, startTime: e.target.value })}
+              required
+            />
+          </div>
+          <div className="mb-8">
+            <label htmlFor="endTime" className="block text-gray-700">Hora de Salida</label>
+            <input
+              type="time"
+              id="endTime"
+              name="endTime"
+              className="w-full md:w-80 px-4 py-3 border rounded"
+              value={formData.endTime}
+              onChange={(e) => setFormData({ ...formData, endTime: e.target.value })}
+              required
+            />
+          </div>
+          <div className="mb-6">
+            <label className="block text-gray-700">¿Días de acceso?</label>
+            <input
+              type="checkbox"
+              id="permissionDays"
+              onChange={(e) => setFormData({ ...formData, showPermissionDays: e.target.checked })}
+            />
+          </div>
+          {formData.showPermissionDays && (
+            <div className="mb-8">
+              <label className="block text-gray-700">Días de acceso</label>
+              <div className="flex flex-wrap">
+                {Object.entries(formData.daysOfWeek).map(([day, checked]) => (
+                  <div key={day} className="mr-4 mb-2">
+                    <input
+                      type="checkbox"
+                      id={day}
+                      name={day}
+                      checked={checked}
+                      onChange={handleChange}
+                    />
+                    <label htmlFor={day} className="ml-2">{day.charAt(0).toUpperCase() + day.slice(1)}</label>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+          
           <button
             type="submit"
             className="w-full md:w-80 bg-blue-500 text-white py-3 rounded hover:bg-blue-600"
@@ -82,7 +188,7 @@ const FormPage = () => {
             Crear Visitas
           </button>
           <div className="mt-4 flex justify-end w-full">
-            <a href="/home" className="w-full md:w-auto bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+            <a href="/home" className="w-full md:w-auto bg-gray-500 text-white px-4 py-2 rounded">
               Regresar
             </a>
           </div>
